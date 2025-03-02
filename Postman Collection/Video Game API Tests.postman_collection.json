@@ -1,0 +1,705 @@
+{
+	"info": {
+		"_postman_id": "e1fbf643-6165-458f-bfb7-74472bb50950",
+		"name": "Video Game API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28187747",
+		"_collection_link": "https://www.postman.com/martian-resonance-930223/workspace/qa-assignment/collection/28187747-e1fbf643-6165-458f-bfb7-74472bb50950?action=share&source=collection_link&creator=28187747"
+	},
+	"item": [
+		{
+			"name": "authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"password\": \"admin\",\r\n  \"username\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/authenticate",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Video Games",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Test 1: Check if status code is 200\r",
+							"pm.test(\"Verify that the status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test 2: Validate response is an array\r",
+							"pm.test(\"Verify that the response should be an array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"// Test 3: Ensure each game has required fields\r",
+							"pm.test(\"Each game should have id, name, releaseDate, reviewScore,category and rating\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    jsonData.forEach(game => {\r",
+							"        pm.expect(game).to.have.property(\"id\");\r",
+							"        pm.expect(game).to.have.property(\"name\");\r",
+							"        pm.expect(game).to.have.property(\"releaseDate\");\r",
+							"        pm.expect(game).to.have.property(\"reviewScore\");\r",
+							"        pm.expect(game).to.have.property(\"category\");\r",
+							"        pm.expect(game).to.have.property(\"rating\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"// Test 4: Validate response time is within limits\r",
+							"pm.test(\"Verify that the response time is within 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Check if response headers include JSON content-type\r",
+							"pm.test(\"Verify that the content-Type is application/json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/videogame",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"videogame"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new video game",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let testType = pm.variables.get(\"test_type\");\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"if(testType === \"positive\"){\r",
+							"    //Test 1: Check if status code is 200\r",
+							"    pm.test(\"Verify if game created sucessfully\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"\r",
+							"// Test 2: Validate response is an object\r",
+							"    pm.test(\"Response should be an object\", function () {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData).to.be.an('object');\r",
+							"    });\r",
+							"\r",
+							"// Test 3: Ensure the game has required fields\r",
+							"    pm.test(\"Game should have id, name, releaseDate, reviewScore, category and rating\", function () {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData).to.have.property(\"id\");\r",
+							"        pm.expect(jsonData).to.have.property(\"name\");\r",
+							"        pm.expect(jsonData).to.have.property(\"releaseDate\");\r",
+							"        pm.expect(jsonData).to.have.property(\"reviewScore\");\r",
+							"        pm.expect(jsonData).to.have.property(\"category\");\r",
+							"        pm.expect(jsonData).to.have.property(\"rating\");\r",
+							"    });\r",
+							"}\r",
+							"else if(testType === \"negative\"){\r",
+							"    //Test 1: Check if status code is 400\r",
+							"    pm.test(\"Verify that game is not created\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"}\r",
+							"// Test 4: Validate response time is within limits\r",
+							"pm.test(\"Verify that response time is within 600ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Check if response headers include JSON content-type\r",
+							"pm.test(\"Verify that the content-Type is application/json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"randomRating\", Math.floor(Math.random() * 11)); \r",
+							"pm.variables.set(\"randomReviewScore\", Math.floor(Math.random() * 101));\r",
+							"\r",
+							"let testTypes = [\"positive\",\"negative\"]\r",
+							"let selectedTest = testTypes[Math.floor(Math.random() * testTypes.length)];\r",
+							"pm.variables.set(\"test_type\", selectedTest); \r",
+							"\r",
+							"// For dynamically removing a field\r",
+							"let requiredFields = [\"category\", \"name\", \"rating\", \"releaseDate\", \"reviewScore\"];\r",
+							"let missingField = requiredFields[Math.floor(Math.random() * requiredFields.length)];\r",
+							"let bodyData = {\r",
+							"    \"category\": \"platform\",\r",
+							"    \"name\": \"2048\",\r",
+							"    \"rating\": pm.variables.get(\"randomRating\"),\r",
+							"    \"releaseDate\": \"2024-06-01\",\r",
+							"    \"reviewScore\": pm.variables.get(\"randomReviewScore\")\r",
+							"};\r",
+							"\r",
+							"if(selectedTest === \"negative\"){\r",
+							"    delete bodyData[missingField];\r",
+							"    pm.variables.set(\"missing_field\", missingField); \r",
+							"}\r",
+							"else{\r",
+							"    pm.variables.set(\"missing_field\", \"None\");\r",
+							"}\r",
+							"\r",
+							"pm.variables.set(\"request_body\", JSON.stringify(bodyData));\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{vault:authorization-secret}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{request_body}}\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/videogame",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"videogame"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a video game",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Define test case types\r",
+							"let testTypes = [\"positive\", \"negative_non_existing\", \"negative_invalid\", \"edge_min\", \"edge_max\", \"edge_just_outside\", \"edge_large_id\", \"edge_negative\"];\r",
+							"let selectedTest = testTypes[Math.floor(Math.random() * testTypes.length)];\r",
+							"pm.variables.set(\"test_type\", selectedTest);\r",
+							"\r",
+							"// Set different game IDs based on the test type\r",
+							"let gameID;\r",
+							"\r",
+							"if (selectedTest === \"positive\") {\r",
+							"    gameID = Math.floor(Math.random() * 10) + 1; //\r",
+							"} else if (selectedTest === \"negative_non_existing\") {\r",
+							"    gameID = 11; \r",
+							"} else if (selectedTest === \"negative_invalid\") {\r",
+							"    gameID = \"abc\"; //\r",
+							"} else if (selectedTest === \"edge_min\") {\r",
+							"    gameID = 1; //\r",
+							"} else if (selectedTest === \"edge_max\") {\r",
+							"    gameID = 10; // \r",
+							"} else if (selectedTest === \"edge_just_outside\") {\r",
+							"    gameID = 11; //\r",
+							"} else if (selectedTest === \"edge_large_id\") {\r",
+							"    gameID = 9999;\r",
+							"} else if (selectedTest === \"edge_negative\") {\r",
+							"    gameID = -5;\r",
+							"}\r",
+							"\r",
+							"// Store the ID as a variable for the request\r",
+							"pm.variables.set(\"game_id\", gameID);\r",
+							"console.log(\"Generated game_id:\", gameID);\r",
+							"console.log(\"Running Test Type:\", selectedTest);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let testType = pm.variables.get(\"test_type\");\r",
+							"let jsonData = pm.response.json();\r",
+							"console.log(\"Running Test Type:\", testType);\r",
+							"console.log(\"API Response:\", jsonData);\r",
+							"\r",
+							"// Positive Case: Expect 200 OK\r",
+							"if (testType === \"positive\" || testType === \"edge_min\" || testType === \"edge_max\") {\r",
+							"    pm.test(\"Verify that the status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Verify that response should contain game details\", function () {\r",
+							"        pm.expect(jsonData).to.be.an(\"object\");\r",
+							"        pm.expect(jsonData).to.have.property(\"id\");\r",
+							"        pm.expect(jsonData).to.have.property(\"name\");\r",
+							"        pm.expect(jsonData).to.have.property(\"releaseDate\");\r",
+							"        pm.expect(jsonData).to.have.property(\"category\");\r",
+							"        pm.expect(jsonData).to.have.property(\"rating\");\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// Non-Existing ID (Expect 404 Not Found)\r",
+							"else if (testType === \"negative_non_existing\" || testType === \"edge_just_outside\" || testType === \"edge_large_id\"|| testType === \"edge_negative\") {\r",
+							"    pm.test(\"Verify that status code is 404\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Verify that error message indicates 'Not Found'\", function () {\r",
+							"        pm.expect(jsonData).to.have.property(\"error\", \"Not Found\");\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// Invalid ID Format (Expect 400 Bad Request)\r",
+							"else if (testType === \"negative_invalid\") {\r",
+							"    pm.test(\"Verify that status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Verify that error message indicates 'Bad Request'\", function () {\r",
+							"        pm.expect(jsonData).to.have.property(\"error\", \"Bad Request\");\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// Test for Response Time\r",
+							"pm.test(\"Verify that the response time is within 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"// Check for JSON Content-Type Header\r",
+							"pm.test(\"Verify that the content-Type is application/json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/videogame/{{game_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"videogame",
+						"{{game_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a video game",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Generate random values for rating (0-10) and reviewScore (0-100)\r",
+							"pm.variables.set(\"randomRating\", Math.floor(Math.random() * 11)); \r",
+							"pm.variables.set(\"randomReviewScore\", Math.floor(Math.random() * 101));\r",
+							"\r",
+							"// Define test case types\r",
+							"let testTypes = [\"positive\", \"negative_missing_field\", \"negative_invalid_id\", \"negative_non_existing_id\", \"edge_min\", \"edge_max\", \"edge_large_id\", \"edge_negative\"];\r",
+							"let selectedTest = testTypes[Math.floor(Math.random() * testTypes.length)];\r",
+							"pm.variables.set(\"test_type\", selectedTest);\r",
+							"\r",
+							"// Define required fields for missing field test cases\r",
+							"let requiredFields = [\"category\", \"name\", \"rating\", \"releaseDate\", \"reviewScore\"];\r",
+							"let missingField = requiredFields[Math.floor(Math.random() * requiredFields.length)]; \r",
+							"\r",
+							"// Create base request body\r",
+							"let bodyData = {\r",
+							"    \"category\": \"platform\",\r",
+							"    \"name\": \"2048\",\r",
+							"    \"rating\": pm.variables.get(\"randomRating\"),\r",
+							"    \"releaseDate\": \"2024-06-01\",\r",
+							"    \"reviewScore\": pm.variables.get(\"randomReviewScore\")\r",
+							"};\r",
+							"\r",
+							"// Declare gameID before assigning values\r",
+							"let gameID = 1; // Default value to prevent undefined errors\r",
+							"\r",
+							"// Handle missing fields for negative test cases\r",
+							"if (selectedTest === \"negative_missing_field\") {\r",
+							"    delete bodyData[missingField];\r",
+							"    pm.variables.set(\"missing_field\", missingField);\r",
+							"} else {\r",
+							"    pm.variables.set(\"missing_field\", \"None\");\r",
+							"}\r",
+							"\r",
+							"// Dynamically select game ID based on test type\r",
+							"if (selectedTest === \"positive\") {\r",
+							"    gameID = Math.floor(Math.random() * 10) + 1;\r",
+							"} else if (selectedTest === \"negative_non_existing_id\") {\r",
+							"    gameID = 11; \r",
+							"} else if (selectedTest === \"negative_invalid_id\") {\r",
+							"    gameID = \"abc\"; \r",
+							"} else if (selectedTest === \"edge_min\") {\r",
+							"    gameID = 1; \r",
+							"} else if (selectedTest === \"edge_max\") {\r",
+							"    gameID = 10;\r",
+							"} else if (selectedTest === \"edge_large_id\") {\r",
+							"    gameID = 9999; \r",
+							"} else if (selectedTest === \"edge_negative\") {\r",
+							"    gameID = -5;\r",
+							"}\r",
+							"\r",
+							"// Store variables for the request\r",
+							"pm.variables.set(\"game_id\", gameID);\r",
+							"pm.variables.set(\"request_body\", JSON.stringify(bodyData));\r",
+							"\r",
+							"console.log(\"Generated game_id:\", gameID);\r",
+							"console.log(\"Running Test Type:\", selectedTest);\r",
+							"console.log(\"Testing with missing field:\", pm.variables.get(\"missing_field\"));\r",
+							"console.log(\"Final Request Body:\", bodyData);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let testType = pm.variables.get(\"test_type\");\r",
+							"let jsonData = pm.response.json();\r",
+							"console.log(\"Running Test Type:\", testType);\r",
+							"console.log(\"API Response:\", jsonData);\r",
+							"\r",
+							"// Positive Case: Expect 200 OK\r",
+							"if (testType === \"positive\" || testType === \"edge_min\" || testType === \"edge_max\") {\r",
+							"    pm.test(\"Verify that status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Verify that response should contain updated game details\", function () {\r",
+							"        pm.expect(jsonData).to.have.property(\"id\");\r",
+							"        pm.expect(jsonData).to.have.property(\"name\");\r",
+							"        pm.expect(jsonData).to.have.property(\"releaseDate\");\r",
+							"        pm.expect(jsonData).to.have.property(\"category\");\r",
+							"        pm.expect(jsonData).to.have.property(\"rating\");\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// Non-Existing ID (Expect 404 Not Found)\r",
+							"else if (testType === \"negative_non_existing_id\" || testType === \"edge_large_id\"|| testType === \"edge_negative\") {\r",
+							"    pm.test(\"Verify that status code is 404\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Verify that error message indicates 'Not Found'\", function () {\r",
+							"        pm.expect(jsonData).to.have.property(\"error\", \"Not Found\");\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// Invalid ID Format or Negative ID (Expect 400 Bad Request)\r",
+							"else if (testType === \"negative_invalid_id\" || testType === \"negative_missing_field\" ) {\r",
+							"     pm.test(\"Verify that status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Verify that error message indicates 'Bad Request'\", function () {\r",
+							"        pm.expect(jsonData).to.have.property(\"error\", \"Bad Request\");\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// Response Time Validation\r",
+							"pm.test(\"Response time should be under 600ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"});\r",
+							"\r",
+							"// Check for JSON Content-Type Header\r",
+							"pm.test(\"Content-Type should be application/json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{vault:authorization-secret}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{request_body}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/videogame/{{game_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"videogame",
+						"{{game_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a video game",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Define test case types\r",
+							"let testTypes = [\"positive\", \"negative_non_existing\", \"negative_invalid\", \"edge_min\", \"edge_max\", \"edge_just_outside\", \"edge_large_id\", \"edge_negative\"];\r",
+							"let selectedTest = testTypes[Math.floor(Math.random() * testTypes.length)];\r",
+							"pm.variables.set(\"test_type\", selectedTest);\r",
+							"\r",
+							"// Set different game IDs based on the test type\r",
+							"let gameID;\r",
+							"\r",
+							"if (selectedTest === \"positive\") {\r",
+							"    gameID = Math.floor(Math.random() * 10) + 1; //\r",
+							"} else if (selectedTest === \"negative_non_existing\") {\r",
+							"    gameID = 11; \r",
+							"} else if (selectedTest === \"negative_invalid\") {\r",
+							"    gameID = \"abc\"; //\r",
+							"} else if (selectedTest === \"edge_min\") {\r",
+							"    gameID = 1; //\r",
+							"} else if (selectedTest === \"edge_max\") {\r",
+							"    gameID = 10; // \r",
+							"} else if (selectedTest === \"edge_just_outside\") {\r",
+							"    gameID = 11; //\r",
+							"} else if (selectedTest === \"edge_large_id\") {\r",
+							"    gameID = 9999;\r",
+							"} else if (selectedTest === \"edge_negative\") {\r",
+							"    gameID = -5;\r",
+							"}\r",
+							"\r",
+							"// Store the ID as a variable for the request\r",
+							"pm.variables.set(\"game_id\", gameID);\r",
+							"console.log(\"Generated game_id:\", gameID);\r",
+							"console.log(\"Running Test Type:\", selectedTest);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let testType = pm.variables.get(\"test_type\");\r",
+							"let jsonData = pm.response.text(); // Use pm.response.text() to access response as text\r",
+							"console.log(\"Running Test Type:\", testType);\r",
+							"console.log(\"API Response:\", jsonData);\r",
+							"\r",
+							"// Positive Case: Expect 200 OK\r",
+							"if (testType === \"positive\" || testType === \"edge_min\" || testType === \"edge_max\") {\r",
+							"    pm.test(\"Verify that the status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Verify that game deleted message is displayed\", function () {\r",
+							"        pm.expect(jsonData).to.include(\"Video game deleted\"); \r",
+							"    });\r",
+							"    pm.test(\"Verify that the content-Type is text/plain\", function () {\r",
+							"        pm.response.to.have.header(\"Content-Type\");\r",
+							"        pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/plain\");\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// Non-Existing ID (Expect 404 Not Found)\r",
+							"else if (testType === \"negative_non_existing\" || testType === \"edge_just_outside\" || testType === \"edge_large_id\"|| testType === \"edge_negative\") {\r",
+							"    pm.test(\"Verify that status code is 404\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Verify that error message indicates 'Not Found'\", function () {\r",
+							"        pm.expect(jsonData).to.include(\"Not Found\"); // Use pm.expect with jsonData as text\r",
+							"    });\r",
+							"    pm.test(\"Content-Type should be application/json\", function () {\r",
+							"        pm.response.to.have.header(\"Content-Type\");\r",
+							"        pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// Invalid ID Format (Expect 400 Bad Request)\r",
+							"else if (testType === \"negative_invalid\") {\r",
+							"    pm.test(\"Verify that status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Verify that error message indicates 'Bad Request'\", function () {\r",
+							"        pm.expect(jsonData).to.include(\"Bad Request\"); // Use pm.expect with jsonData as text\r",
+							"    });\r",
+							"    pm.test(\"Content-Type should be application/json\", function () {\r",
+							"        pm.response.to.have.header(\"Content-Type\");\r",
+							"        pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// Test for Response Time\r",
+							"pm.test(\"Verify that the response time is within 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{vault:authorization-secret}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/videogame/{{game_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"videogame",
+						"{{game_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8aa8a7b4-fc75-43d9-b014-dc22e4369914" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Assignment.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,28 +37,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python tests.Python tests for forgot_password.TestForgotPassword.test_forgot_password.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for login.TestLogin.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for login.TestLogin.test_empty_fields.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for login.TestLogin.test_invalid_login.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for login.TestLogin.test_invalid_username_valid_password.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for login.TestLogin.test_password_masking.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for login.TestLogin.test_valid_login.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for login.TestLogin.test_valid_username_invalid_password.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for logout.TestLogout.test_logout_functionality.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Assignment&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python tests.Python tests for forgot_password.TestForgotPassword.test_forgot_password.executor": "Run",
+    "Python tests.Python tests for login.TestLogin.executor": "Run",
+    "Python tests.Python tests for login.TestLogin.test_empty_fields.executor": "Run",
+    "Python tests.Python tests for login.TestLogin.test_invalid_login.executor": "Run",
+    "Python tests.Python tests for login.TestLogin.test_invalid_username_valid_password.executor": "Run",
+    "Python tests.Python tests for login.TestLogin.test_password_masking.executor": "Run",
+    "Python tests.Python tests for login.TestLogin.test_valid_login.executor": "Run",
+    "Python tests.Python tests for login.TestLogin.test_valid_username_invalid_password.executor": "Run",
+    "Python tests.Python tests for logout.TestLogout.test_logout_functionality.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Assignment/Postman Collection",
+    "settings.editor.selected.configurable": "preference.NewJMeterHomeConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Assignment\Postman Collection" />
+      <recent name="D:\Assignment\JMeter files" />
       <recent name="D:\Assignment" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
