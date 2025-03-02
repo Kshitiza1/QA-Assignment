@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8aa8a7b4-fc75-43d9-b014-dc22e4369914" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Automation Approach.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Automation Approach.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Critical Thinking.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Critical Thinking.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Error Message Validation.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Error Message Validation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jmeter_performance_report.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Jmeter_performance_report.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/img.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,17 +59,20 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Assignment/Postman Collection",
+    "last_opened_file_path": "D:/Assignment/images",
     "settings.editor.selected.configurable": "preference.NewJMeterHomeConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Assignment\images" />
       <recent name="D:\Assignment\Postman Collection" />
       <recent name="D:\Assignment\JMeter files" />
       <recent name="D:\Assignment" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Assignment\docs" />
+      <recent name="D:\Assignment\images" />
       <recent name="D:\Assignment\JMeter files" />
     </key>
   </component>

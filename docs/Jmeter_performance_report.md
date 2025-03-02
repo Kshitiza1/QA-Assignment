@@ -33,7 +33,7 @@
 
 ## Screenshots of JMeter Results
 ### Summary Report
-![img.png](img.png)
+![img.png](../images/img.png)
 
 ---
 ## Conclusion

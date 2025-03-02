@@ -104,6 +104,11 @@ jmeter -n -t httpbintest.jmx -l results.csv -e -o ReportFolder
 Open ReportFolder/index.html in a browser.
 
 ---
+
+## Additional Documentation: 
+For theory and detailed reports, visit the [`docs/`](docs/) folder.
+
+---
 ## Conclusion
 
 This repository contains automated test scripts for web UI, APIs, and performance testing. Follow the above steps to set up, run tests, and generate reports.
