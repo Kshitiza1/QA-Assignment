@@ -18,6 +18,8 @@ The project consists of three main parts:
 
 Below are the step-by-step instructions to set up and execute the tests.
 
+___
+
 ## Web Automation Testing (Selenium & PyTest)
 
 ### Dependencies
@@ -52,6 +54,7 @@ pytest tests/logout.py -v   # Run logout test cases
 pytest .\tests\login.py --html=reports/task1_report.html --self-contained-html #Run and generate reports
 pytest .\tests\login.py -m task2 --html=reports/task2_report.html --self-contained-html -v #Run only cases with mark task2
 ```
+
 ---
 
 ## API Testing (Postman)
