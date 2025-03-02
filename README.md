@@ -89,12 +89,10 @@ jmeter
 ```
 
 - Load the JMX File
-
-Open JMeter UI → Click File → Open → Select httpbintest.jmx
-
+    - Open JMeter UI → Click File → Open → Select httpbintest.jmx
+  
 - Run the Test Plan
-
-Click the Start (▶) button to execute the test.
+  - Click the Start (▶) button to execute the test.
 
 - Generate HTML Report through Non-GUI
 ```
