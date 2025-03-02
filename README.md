@@ -67,15 +67,15 @@ Postman (GUI for API testing)
 
 1. Import Postman Collection
 
-Open Postman → Click Import → Upload the .json collection file.
+    - Open Postman → Click Import → Upload the .json collection file.
 
-3. Set Environment Variables (if required)
+2. Set Environment Variables (if required)
 
-Go to Environments → Add API base_url, auth_token, etc.
+    - Go to Environments → Add API base_url, auth_token, etc.
 
 3. Run Collection
 
-Click Runner → Select the collection → Click Run.
+    - Click Runner → Select the collection → Click Run.
 
 ---
 
